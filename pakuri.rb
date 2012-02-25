@@ -3,7 +3,7 @@ Plugin.create(:pakuri) do
   filter_command do |menu|
     menu[:pakuri] = {
       :slug => :pakuri,
-      :name => "ぱくり",
+      :name => "ぱくる",
       :condition => lambda{|m| m.message.repliable?},
       :exec => lambda{|m| pakuri(m.message) },
       :visible => true,
