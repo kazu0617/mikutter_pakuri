@@ -16,7 +16,11 @@ Plugin.create(:pakuri) do
     message.favorite(true)
     message.retweet
     str=message.to_s
-    Post.primary_service.update(:message => str)
-    Post.primary_service.update(:message => "@#{name} pakuri.rbによりhttp://twitter.com/#!/#{name}/status/#{message.id}をパクリました")
+    if message[:replyto]
+      Post.primary_service.update(:message => str, :replyto => message[:replyto])
+    else
+      Post.primary_service.update(:message => str)
+    end
+    Post.primary_service.update(:message => "pakuri.rbによりhttp://twitter.com/#!/#{name}/status/#{message.id}をパクリました")
   end
 end
