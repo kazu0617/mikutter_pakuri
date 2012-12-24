@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 Plugin.create(:pakuri) do
-  filter_command do |menu|
-    menu[:pakuri] = {
-      :slug => :pakuri,
-      :name => "ぱくる",
-      :condition => lambda{|m| m.message.repliable?},
-      :exec => lambda{|m| pakuri(m.message) },
-      :visible => true,
-      :role => :message
-    }
-    [menu]
+  command(:pakuri,
+          name: "ぱくる",
+          condition: Plugin::Command[:CanReplyAll],
+          visible: true,
+          role: :timeline ) do |m|
+    m.messages.map do |msg|
+      pakuri(msg.message)
+    end
   end
   def pakuri(message)
     name=message.idname
