@@ -1,0 +1,9 @@
+---
+slug: :mikutter_pakuri
+depends:
+  mikutter: 3.2.9
+  plugin: []
+version: '1.0'
+author: 
+name: "パクツイプラグイン"
+description: "パクツイする前にはファボを忘れずに"
